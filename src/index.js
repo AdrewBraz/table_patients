@@ -4,7 +4,7 @@ import html from './html'
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send(html())
+    res.send(html(req))
 })
 
 app.use(express.static('public'));

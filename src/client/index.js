@@ -1,6 +1,11 @@
 //@ts-check
 import React from 'react'
 import { hydrate } from 'react-dom';
-import App from './components/App';
+import Routes from './components/Routes';
+import { BrowserRouter } from 'react-dom';
 
-hydrate(<App />, document.getElementById('root'))
+hydrate(
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>,
+     document.getElementById('root'))
