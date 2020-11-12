@@ -1,4 +1,6 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     target: 'node',
@@ -20,5 +22,14 @@ module.exports = {
               use: 'babel-loader',
             }
         ]
-    }
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new CopyPlugin([
+        {
+          from: path.resolve(__dirname, 'node_modules/oracledb/build'),
+          to: 'node_modules/oracledb/build',
+        },
+      ]),
+    ],
 }
