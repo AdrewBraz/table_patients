@@ -5,6 +5,7 @@ import fetchData from './fetchData';
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from './reducers';
 
+
 const app = express();
 
 app.get('/', async (req, res) => {
@@ -13,7 +14,7 @@ app.get('/', async (req, res) => {
         appState: {},
         patients
     }
-    const store = configureStore({reducer, preloadedState: initialState});
+    const store = await configureStore({reducer, preloadedState: initialState});
     res.send(html(req, store))
 })
 

@@ -17,7 +17,11 @@ export default (req, store) => {
     );
     return (
         `<html>
-          <head></head>
+          <head>
+            <meta charSet="utf-8" />
+            <title>My Title</title>
+            <link rel="stylesheet" href="main.css" />
+          </head>
           <body>
             <div id="root">${app}</div>
             <script>

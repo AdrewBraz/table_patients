@@ -7,9 +7,11 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 
 const requests = {
-    '/': "SELECT * FROM OMS_LIST_V",
+    '/': "SELECT * FROM ST.OMS_LIST_V",
     '/vmp': "SELECT * FROM OMS_LIST_V WHERE COD LIKE '200%'"
 }
+
+console.log(dbconfig);
 
 const getRequestString = (path) => requests[path];
 
@@ -17,7 +19,7 @@ export default async(path) => {
     let connection,
         result;
     const requestString = getRequestString(path)
-    console.log(dbconfig)
+
     try{
         connection = await oracledb.getConnection(dbconfig)
         result = await connection.execute(requestString)
