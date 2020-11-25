@@ -1,19 +1,24 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import actions from '../../actions';
+import { has } from 'lodash';
 
 export default (props) => {
     const { columnNames } = props;
+    const order = useSelector(state => state.app.order);
     const dispatch = useDispatch();
 
+    const getDirrection = {
+        'asc': () => 'desc',
+        'desc': () => 'asc'
+    }
+
     const orderList = (e) => {
-            const { key } = e.target.dataset;
-            if(!dirrection){
-                e.target.dataset.dirrection = 'asc'
-            }
-            const { dirrection } = e.target.dataset;
-            dispatch(actions.orderPatients({key, dirrection}))
-        }
+        const { key } = e.target.dataset;
+        console.log( order[key])
+        const dirrection = has(order, key) ? getDirrection[order[key]]() : 'asc'
+        dispatch(actions.orderPatients({[key]: dirrection}))
+    }
 
     return (
         <thead>

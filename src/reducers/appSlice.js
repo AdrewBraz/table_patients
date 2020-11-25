@@ -9,8 +9,8 @@ const appSlice = createSlice({
   reducers: {
     orderPatients(state, {payload: {key, dirrection}}){
       const { order } = state;
-      order[key] = dirrection;
-      return state;
+      order[key] = dirrection
+      return state
     }
   }
 });
@@ -23,7 +23,7 @@ const getPatients = state => state.patients
 
 export const PatientSelector = createSelector(
     [getOrder, getPatients],
-    (order, patients) => orderBy(patients, Object.keys(order), Object.values(order))
+    (order, patients) =>  orderBy(patients, order[0], order[1])
 )
 
 export default appSlice.reducer;
