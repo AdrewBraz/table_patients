@@ -5,12 +5,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const appSlice = createSlice({
   name: 'app',
-  initialState: { order: {}},
+  initialState: { order: {}, filters: []},
   reducers: {
-    orderPatients(state, {payload: {key, dirrection}}){
-      const { order } = state;
-      order[key] = dirrection
+    orderPatients(state, {payload}){
+      state.order = payload;
       return state
+    },
+    filterPatients(state, { payload }){
+      return state;
     }
   }
 });
@@ -23,7 +25,7 @@ const getPatients = state => state.patients
 
 export const PatientSelector = createSelector(
     [getOrder, getPatients],
-    (order, patients) =>  orderBy(patients, order[0], order[1])
+    (order, patients) =>  orderBy(patients, Object.keys(order), Object.values(order))
 )
 
 export default appSlice.reducer;

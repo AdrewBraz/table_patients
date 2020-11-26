@@ -2,8 +2,8 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import TableHead from './TableHead'
+import  cn from 'classnames';
 import { PatientSelector } from '../../reducers/appSlice';
-
 
 export default () => {
 const patients = useSelector(PatientSelector)
@@ -18,7 +18,7 @@ const renderPatients = (patients) => (
     )
 
     return (
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
             <TableHead columnNames={columnNames} />
             <tbody>
                 {renderPatients(patients)}
