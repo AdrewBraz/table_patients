@@ -5,9 +5,8 @@ import { has } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
-export default (props) => {
-    const { columnNames } = props;
-    const order = useSelector(state => state.app.order);
+export default () => {
+    const { order, columnNames } = useSelector(state => state.app);
     const dispatch = useDispatch();
 
     const getDirrection = {

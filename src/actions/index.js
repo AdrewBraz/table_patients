@@ -1,6 +1,7 @@
-import { orderPatients } from '../reducers/appSlice';
+import { orderPatients, filterPatients } from '../reducers/appSlice';
 
 export default {
-    orderPatients
+    orderPatients,
+    filterPatients
 }
 

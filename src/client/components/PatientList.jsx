@@ -7,7 +7,7 @@ import { PatientSelector } from '../../reducers/appSlice';
 
 export default () => {
 const patients = useSelector(PatientSelector)
-const columnNames = Object.keys(patients[0]);
+const { columnNames } = useSelector(state => state.app)
 const renderPatients = (patients) => (
         patients.map((patient, i) => (
             <tr key={i}>
@@ -19,7 +19,7 @@ const renderPatients = (patients) => (
 
     return (
         <Table striped bordered hover responsive>
-            <TableHead columnNames={columnNames} />
+            <TableHead />
             <tbody>
                 {renderPatients(patients)}
             </tbody>

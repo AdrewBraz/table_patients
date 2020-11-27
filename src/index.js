@@ -10,8 +10,9 @@ const app = express();
 
 app.get('/', async (req, res) => {
     const patients = await fetchData(req.path).then(data => data)
+    const columnNames = Object.keys(patients[0]);
     const initialState = {
-        appState: {},
+        app: { columnNames, order: {}, filters: [] },
         patients
     }
     const store = await configureStore({reducer, preloadedState: initialState});

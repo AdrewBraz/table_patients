@@ -4,6 +4,8 @@ import Accordion from 'react-bootstrap/Accordion'
 import PatientList from './PatientList'
 import { useSelector } from 'react-redux';
 
+import FilterForm from './FilterForm';
+
 export default () => {
     const patients = useSelector(state => state.patients)
     return (
@@ -14,19 +16,11 @@ export default () => {
             </Container>
         </Jumbotron>
         <Container >
-        <Row>
-                <Accordion >
-                    <Accordion.Toggle as={Button} variant='info' eventKey='0'>
-                        Add Filter
-                    </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="0">
-                    </Accordion.Collapse>
-                </Accordion>
-            </Row>
+            <FilterForm />
         </Container>
         <Container fluid>
             <Row>
-               <PatientList />
+                <PatientList/>
             </Row>
         </Container>
         </div>
