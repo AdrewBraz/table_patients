@@ -12,8 +12,9 @@ const appSlice = createSlice({
       return state
     },
     filterPatients(state, {payload}){
-      console.log('payload', payload)
-      state.filters.push(payload)
+      payload.forEach(filter => {
+        state.filters.push(filter)
+      });
       return state;
     }
   }
@@ -29,10 +30,17 @@ const getPatients = state => state.patients
 
 const FilterSelector = createSelector(
   [getFilters, getPatients, getColumnNames],
-  (filters, patients, columnNames) => filters.length === 0 ? patients : columnNames.reduce((acc, name) =>{
+  (filters, patients, columnNames) => {
+  return filters.length === 0 ? patients : filters.reduce((acc, name) =>{
     const {key, value} = name;
-    return value.length <= 1 ? acc : acc.filter(patient => Object.values(patient).some( i => i.includes(value)))
-  }, patients)
+    console.log(name, key, value)
+    return value.length <= 1 ? acc : acc.filter(patient => {
+      console.log(patient[key])
+      return patient[key].split(' ').some( i => {
+        return i.includes(value)
+      })
+    })
+  }, patients)}
 )
 
 

@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import actions from '../../actions'
 
 export default () => {
-  const { columnNames } = useSelector(state => state.app);
+  const { columnNames, filters } = useSelector(state => state.app);
   const dispatch = useDispatch()
 
-  const handleSubmit = (values) => {
-      console.log('submit', values)
-      dispatch(actions.filterPatients(values))
+  const handleSubmit = (filter) => {
+    console.log(filter)
+    dispatch(actions.filterPatients(filter))
   };
 
   return (
@@ -17,7 +17,7 @@ export default () => {
         <h1>Filter List</h1>
         <Formik
             initialValues={{filters: [{key: '', value: ''}]}}
-            onSubmit={(values) => handleSubmit(values)}
+            onSubmit={({filters}) => handleSubmit(filters)}
             >
         {({ values }) => {
             return (
